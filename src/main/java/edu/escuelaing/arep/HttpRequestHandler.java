@@ -12,7 +12,7 @@ import java.nio.file.Paths;
  */
 public class HttpRequestHandler {
     private final Socket clientSocket;
-    
+    private static final String ruta = "src/main/java/edu/escuelaing/arep/resources";
     
     public HttpRequestHandler(Socket clientSocket){
         this.clientSocket = clientSocket;
@@ -30,7 +30,9 @@ public class HttpRequestHandler {
         String method = "";
         while ((inputLine = in.readLine()) != null) {
             if (isFirstLine) {
-                file = inputLine.split(" ")[1];
+                file =ruta + inputLine.split(" ")[1];
+                System.out.println(file);
+                
                 method = inputLine.split(" ")[0];
                 isFirstLine = false; 
             }
