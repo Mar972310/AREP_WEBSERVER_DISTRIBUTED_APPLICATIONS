@@ -22,7 +22,7 @@ public class RestService {
     }
     public String responsePOST(String query, String method){
         
-        String response = "HTTP/1.1. 200 OK\r\n"
+        String response = "HTTP/1.1. 201 OK\r\n"
                 + "Content-Type: text/json\r\n"
                 + "\r\n"
                 + "{\"name\":\""+query+"\", \"message\":Hiciste una petición POST}";

@@ -8,11 +8,12 @@ import java.nio.file.Paths;
 
 /**
  *
- * @author maritzamonsalvebautista
+ * @author Maria Valentina Torres Monsalve
  */
 public class HttpRequestHandler {
     private final Socket clientSocket;
     private static final String ruta = "src/main/java/edu/escuelaing/arep/resources";
+    
     
     public HttpRequestHandler(Socket clientSocket){
         this.clientSocket = clientSocket;
@@ -30,9 +31,7 @@ public class HttpRequestHandler {
         String method = "";
         while ((inputLine = in.readLine()) != null) {
             if (isFirstLine) {
-                file =ruta + inputLine.split(" ")[1];
-                System.out.println(file);
-                
+                file = ruta + inputLine.split(" ")[1];
                 method = inputLine.split(" ")[0];
                 isFirstLine = false; 
             }
@@ -60,25 +59,21 @@ public class HttpRequestHandler {
            
         if(method.equals("GET")){
             String contentType = getContentType(fileRequest);
-            if(fileRequest.startsWith("/app")){
+            if(fileRequest.endsWith("/app")){
                 outputLine = new RestService().responseGET(query,method);
                 out.println(outputLine); 
-            }else if(contentType.equals("text/html") ||contentType.equals("text/css") || contentType.equals("text/js")){
+            }else if(contentType.equals("text/html") ||contentType.equals("text/css") || contentType.equals("application/javascript")){
                 outputLine = readingHtmlCssJs(fileRequest,contentType);
                 out.println(outputLine);
             }else if (contentType.equals("image/png") ||contentType.equals("image/jpeg") ){
                 requestImgHandler(file, contentType, bodyOut, out );  
             }
         }else if(method.equals("POST")){
-            if(fileRequest.startsWith("/app/hello")){
+            if(fileRequest.endsWith("/app/hello")){
                 outputLine = new RestService().responsePOST(query,method);
                 out.println(outputLine);
             }
-        }else{
-            
-               
         }
-        
     }
     
     
@@ -118,7 +113,6 @@ public class HttpRequestHandler {
             out.println(notFound());
         } 
     }
-    
     
     public static boolean fileExists(String filePath) {
         Path path = Paths.get(filePath);
