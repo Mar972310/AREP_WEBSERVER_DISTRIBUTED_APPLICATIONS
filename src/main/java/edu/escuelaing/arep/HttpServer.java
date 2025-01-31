@@ -24,22 +24,22 @@ public class HttpServer {
         try {
             serverSocket = new ServerSocket(PORT);
         } catch (IOException e) {
-            System.err.println("No se pudo iniciar el servidor en el puerto: " + PORT);
+            System.err.println("Failed to start server on port: " + PORT);
             throw e;
         }
 
         while (running) {
             try {
-                System.out.println("Listo para recibir ...");
+                System.out.println("Ready to receive ...");
                 Socket clientSocket = serverSocket.accept();
                 HttpRequestHandler requestHandler = new HttpRequestHandler(clientSocket);
                 requestHandler.handlerRequest();
             } catch (IOException e) {
                 if (!running) {
-                    System.out.println("Servidor detenido.");
+                    System.out.println("Server stopped.");
                     break;
                 }
-                System.err.println("Error al aceptar conexión.");
+                System.err.println("Error accepting connection.");
             }
         }
     }
@@ -49,9 +49,9 @@ public class HttpServer {
         if (serverSocket != null && !serverSocket.isClosed()) {
             try {
                 serverSocket.close();
-                System.out.println("Servidor detenido correctamente.");
+                System.out.println("Server stopped successfully.");
             } catch (IOException e) {
-                System.err.println("Error al cerrar el servidor: " + e.getMessage());
+                System.err.println("Error closing server: " + e.getMessage());
             }
         }
     }

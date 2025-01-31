@@ -11,21 +11,21 @@ package edu.escuelaing.arep;
 public class RestService {
     
     public String responseGET(String query, String method){
-        
+        String name = query.split("=")[1];
         String response = "HTTP/1.1. 200 OK\r\n"
                 + "Content-Type: text/json\r\n"
                 + "\r\n"
-                + "{\"name\":\""+query+"\", \"message\":Hiciste una petición GET}";
+                + "{\"name\":\""+name+"\", \"message\":Hiciste una petición GET}";
 
         return response;
         
     }
     public String responsePOST(String query, String method){
-        
+        String name = query.split("=")[1];
         String response = "HTTP/1.1. 201 OK\r\n"
                 + "Content-Type: text/json\r\n"
                 + "\r\n"
-                + "{\"name\":\""+query+"\", \"message\":Hiciste una petición POST}";
+                + "{\"name\":\""+name+"\", \"message\":Hiciste una petición POST}";
 
         return response;
         

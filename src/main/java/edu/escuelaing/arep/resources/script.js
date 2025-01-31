@@ -14,5 +14,5 @@ function loadPostMsg() {
 
     fetch(url, {method: 'POST'})
         .then(response => response.text())
-        .then(text => document.getElementById("postResult").innerHTML = text); // Cambiado a "postResult"
+        .then(text => document.getElementById("postResult").innerHTML = text); 
 }

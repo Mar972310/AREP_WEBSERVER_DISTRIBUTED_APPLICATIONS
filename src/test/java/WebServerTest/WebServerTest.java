@@ -196,7 +196,7 @@ public class WebServerTest {
 
     @Test
     public void shouldLoadRestGet() throws Exception {
-        String file = "app";
+        String file = "app?name=maria";
         try {
             URL requestUrl = new URL(URL + file);
             HttpURLConnection request = (HttpURLConnection) requestUrl.openConnection();
@@ -211,7 +211,7 @@ public class WebServerTest {
 
     @Test
     public void shouldLoadRestPost() throws Exception {
-        String file = "app/hello";
+        String file = "app/hello?name=maria";
         try {
             URL requestUrl = new URL(URL + file);
             HttpURLConnection request = (HttpURLConnection) requestUrl.openConnection();
